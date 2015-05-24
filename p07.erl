@@ -14,12 +14,12 @@ rev_concat(L1, []) ->
 rev_concat([H|T],L2) ->
   rev_concat(T, [H | L2]).
 
-flatten(L) -> flatten(L, []).
+flatten(L) -> p05:reverse(flatten(L, [])).
 
 flatten([H|T], A) ->
   if
-    is_list(H) -> concat(flatten(H, A), flatten(T, A));
+    is_list(H) -> concat(flatten(T, []), flatten(H, A));
     true -> flatten(T, [H|A])
   end;
 
-flatten([], A) -> p05:reverse(A).
+flatten([], A) -> A.
